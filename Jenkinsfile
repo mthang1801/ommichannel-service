@@ -57,7 +57,7 @@ pipeline {
             }
             steps {                
                 script {
-                try{
+                    try{
                         echo "Branch name is : ${BRANCH_NAME}"
                         if(BRANCH_NAME == "*/main" || BRANCH_NAME == "*/master") {
                             withCredentials([usernamePassword(credentialsId: "docker-hub", usernameVariable: "DOCKER_USERNAME", passwordVariable: "DOCKER_PASSWORD")]){
