@@ -9,12 +9,12 @@ pipeline {
     environment {
         builderUser = ""
         dockerImage = ""
-        dockerImageName = "react-template" 
+        dockerImageName = "ommichannel-service" 
         buildSuccess = false
     }
 
     tools { 
-        nodejs "nodejs-16.20"
+        nodejs "nodejs-19.8.1"
     }
 
     stages {
@@ -48,6 +48,15 @@ pipeline {
                 sh "node -v"
                 sh "npm install --force"
             }
+        }
+    }
+
+    post {
+        success {
+            echo "Build Completed."
+        }
+        failure { 
+            echo "Build Failed."
         }
     }
 }
