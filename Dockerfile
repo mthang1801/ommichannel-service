@@ -11,6 +11,7 @@ WORKDIR /usr/src/app
 COPY . .
 COPY --from=builder /usr/src/app/dist ./dist
 EXPOSE 5000
-CMD ["node", "dist/main"]
+RUN npm install -g pm2
+CMD ["pm2", "start", "ecosystem.config.js"]
 
 

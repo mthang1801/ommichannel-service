@@ -12,7 +12,7 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-ecosystem.config.js
+# ecosystem.config.js
 
 # OS
 .DS_Store
