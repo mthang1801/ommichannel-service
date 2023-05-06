@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     environment {
-        builderUser = ""
+        buildUser = ""
         dockerImage = ""
         dockerImageName = "ommichannel-service" 
         buildSuccess = false
