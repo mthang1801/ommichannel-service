@@ -13,7 +13,7 @@ pipeline {
     }
 
     tools { 
-        nodejs "nodejs-19.8.1"
+        nodejs "nodejs-16.20"
     }
 
     stages {
