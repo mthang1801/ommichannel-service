@@ -6,6 +6,13 @@ def getBranchName(){
 pipeline {
     agent any
 
+    environment {
+        builderUser = ""
+        dockerImage = ""
+        dockerImageName = "react-template" 
+        buildSuccess = false
+    }
+
     tools { 
         nodejs "nodejs-16.20"
     }
@@ -21,7 +28,7 @@ pipeline {
             environment {
                 BRANCH_NAME = getBranchName()
             }
-            
+
             steps { 
                 echo "[GIT VERSION]"
                 sh "git --version"
@@ -33,6 +40,13 @@ pipeline {
                     buildUser = env.BUILD_USER_ID + "-" + env.BUILD_USER
                 }
                 echo "build User is : ${buildUser}"
+            }
+        }
+
+        stage("Installation"){
+            steps {
+                sh "node -v"
+                sh "npm install --force"
             }
         }
     }
