@@ -1,3 +1,5 @@
+def DOCKER_IMAGE = "ommichannel-service"
+
 def getBranchName(){
     return scm.branches[0].name
 }
@@ -6,8 +8,7 @@ pipeline {
     agent any
 
     environment {
-        buildUser = ""        
-        dockerImageName = "ommichannel-service" 
+        buildUser = ""                
         buildSuccess = false
     }
 
@@ -51,8 +52,7 @@ pipeline {
 
         stage("Build And Push Image"){
               environment {
-                DOCKER_TAG = "${env.BUILD_NUMBER}"
-                DOCKER_IMAGE = dockerImageName 
+                DOCKER_TAG = "${env.BUILD_NUMBER}"                
                 BRANCH_NAME = getBranchName()
             }
             steps {                
