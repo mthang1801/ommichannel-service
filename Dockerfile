@@ -2,7 +2,7 @@
 FROM node:16.20.0 AS builder
 WORKDIR /usr/src/app
 COPY package*.json .
-RUN npm install --legacy-peer-deps
+RUN npm install --force
 COPY . .
 RUN npm run build --only=builder
 
