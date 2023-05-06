@@ -24,24 +24,24 @@ pipeline {
             }
         }
 
-        stage("Environment"){
+         stage("Environment") {
             environment {
                 BRANCH_NAME = getBranchName()
             }
-
-            steps { 
-                echo "[GIT VERSION]"
+            steps {
+                script { 
                 sh "git --version"
-                echo "BRANCH: ${BRANCH_NAME}"
-                echo "[DOCKER VERSION]"
+                echo "branch name: ${BRANCH_NAME}"
                 sh "docker --version"
                 sh "printenv"
-                wrap([$class: "BuildUser"]){
+                wrap([$class : "BuildUser"]) {
                     buildUser = env.BUILD_USER_ID + "-" + env.BUILD_USER
                 }
                 echo "build User is : ${buildUser}"
+                }
             }
         }
+
 
         stage("Installation"){
             steps {
