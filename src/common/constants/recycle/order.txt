@@ -1,0 +1,247 @@
+async reportOrderStatuses(sellerId, queryParams: OrderQueryParamsDto): Promise<OrderReportStatusesDto> {
+	const queryParamsWhereClause = this.getReportOrderStatusesQueryParams(sellerId, queryParams);
+	const [result, _] = await sequelize.query(
+		`SELECT 
+		* 
+	  FROM
+	(SELECT 
+	  IFNULL(COUNT(*),0) AS inProgressCount 
+	FROM
+	  orders 
+	WHERE ${queryParamsWhereClause} 
+	  AND order_status_id IN (
+		${OrderStatusEnum.Mới},
+		${OrderStatusEnum['Thanh toán thất bại']}
+	  )) AS inProgressCount,
+	  (SELECT 
+		IFNULL(SUM(final_total_money_amount), 0) AS inProgressAmount 
+	  FROM
+		orders 
+	  WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+		  ${OrderStatusEnum.Mới},
+		  ${OrderStatusEnum['Thanh toán thất bại']}
+		)) AS inProgressAmount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS confirmedAndPaymentSuccessCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND ( order_status_id IN (
+			${OrderStatusEnum['Đã xác nhận']}		
+		) OR (payment_status = ${PaymentStatusEnum['Đã thanh toán']} AND order_status_id IN (${OrderStatusEnum['Đã xác nhận']}) ) )
+	) AS confirmedAndPaymentSuccessCount,
+	(SELECT 
+		IFNULL(SUM(final_total_money_amount),0) AS confirmedAndPaymentSuccessAmount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND ( order_status_id IN (
+			${OrderStatusEnum['Đã xác nhận']}			
+			) OR (payment_status = ${PaymentStatusEnum['Đã thanh toán']} AND order_status_id IN (${OrderStatusEnum['Đã xác nhận']}) ) )
+	) AS confirmedAndPaymentSuccessAmount,
+	(SELECT 
+	  IFNULL(COUNT(*),0) AS confirmedCount 
+	FROM
+	  orders 
+	WHERE ${queryParamsWhereClause} 
+	  AND order_status_id IN (
+		${OrderStatusEnum['Đã xác nhận']}			
+	  ) AND payment_status != ${PaymentStatusEnum['Đã thanh toán']}) AS confirmedCount,
+	(SELECT 
+	  IFNULL(SUM(final_total_money_amount), 0) AS confirmedAmount
+	FROM
+	  orders 
+	WHERE ${queryParamsWhereClause} 
+	  AND order_status_id IN (
+		${OrderStatusEnum['Đã xác nhận']}			
+	  ) AND payment_status != ${PaymentStatusEnum['Đã thanh toán']}) AS confirmedAmount,
+	
+	(SELECT 
+	  IFNULL(COUNT(*),0) AS packageCount
+	FROM
+	  orders 
+	WHERE ${queryParamsWhereClause} 
+	  AND order_status_id IN (			
+		${OrderStatusEnum['Đã đóng gói']},
+		${OrderStatusEnum['Chờ đóng gói']}
+	  )) AS packageCount,
+	(SELECT 
+	IFNULL(SUM(final_total_money_amount),0) AS packageAmount
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+	AND order_status_id IN (			
+		${OrderStatusEnum['Đã đóng gói']},
+		${OrderStatusEnum['Chờ đóng gói']}
+	)) AS packagedAmount,
+	(SELECT 
+	  IFNULL(COUNT(*),0) AS shippingCount 
+	FROM
+	  orders 
+	WHERE ${queryParamsWhereClause} 
+	  AND order_status_id IN (
+		${OrderStatusEnum['Chờ lấy hàng']},
+		${OrderStatusEnum['Đang vận chuyển']},
+		${OrderStatusEnum['Đang giao hàng']},
+		${OrderStatusEnum['Giao thành công']}
+	  )) AS shippingCount,
+	(SELECT 
+		 IFNULL(SUM(final_total_money_amount), 0) AS shippingAmount
+	FROM
+	  orders 
+	WHERE ${queryParamsWhereClause} 
+	  AND order_status_id IN (
+		${OrderStatusEnum['Chờ lấy hàng']},
+		${OrderStatusEnum['Đang vận chuyển']},
+		${OrderStatusEnum['Đang giao hàng']},
+		${OrderStatusEnum['Giao thành công']}			
+	  )) AS shippingAmount,
+	(SELECT 
+	  IFNULL(COUNT(*), 0) AS failShipCount 
+	FROM
+	  orders 
+	WHERE ${queryParamsWhereClause} 
+	  AND order_status_id IN (
+		${OrderStatusEnum['Đang chuyển hoàn']},
+		${OrderStatusEnum['Đã chuyển hoàn']},
+		${OrderStatusEnum['Lỗi giao hàng']},
+
+	  )) AS failShipCount,
+	(SELECT 
+	  IFNULL(SUM(final_total_money_amount), 0) AS failShipAmount 
+	FROM
+	  orders 
+	WHERE ${queryParamsWhereClause} 
+	  AND order_status_id IN (
+		${OrderStatusEnum['Đang chuyển hoàn']},
+		${OrderStatusEnum['Đã chuyển hoàn']},
+		${OrderStatusEnum['Lỗi giao hàng']},
+	  )) AS failShipAmount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS completedCount 
+		FROM
+		orders 
+		WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Hoàn thành']}
+		)) AS completedCount,
+	(SELECT 
+		IFNULL(SUM(final_total_money_amount),0) AS completedAmount 
+		FROM
+		orders 
+		WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Hoàn thành']}
+		)) AS completedAmount, 
+	(SELECT 
+		IFNULL(COUNT(*),0) AS countNewOrder 
+	  FROM
+		orders 
+	  WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+		  ${OrderStatusEnum.Mới}
+		)) AS newOrderCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS failPaymentCount 
+		FROM
+		orders 
+		WHERE ${queryParamsWhereClause} 
+		AND payment_status IN (
+			${PaymentStatusEnum['Thanh toán thất bại']}
+		)) AS failPaymentCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS successPaymentCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND payment_status IN (
+			${PaymentStatusEnum['Đã thanh toán']}
+		)
+		AND order_status_id IN (${OrderStatusEnum['Đã xác nhận']})
+		) AS successPaymentCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS waitingPackagedCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Chờ đóng gói']}
+		)) AS waitingPackagedCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS packagedCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (			
+			${OrderStatusEnum['Đã đóng gói']}
+		)) AS packagedCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS waitingForGoodsCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Chờ lấy hàng']}
+		)) AS waitingForGoodsCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS transportingCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Đang vận chuyển']}
+		)) AS transportingCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS deliveryCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Đang giao hàng']}
+		)) AS deliveryCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS successfulDeliveryCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Giao thành công']}
+		)) AS successfulDeliveryCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS errorDeliveryCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Lỗi giao hàng']}
+		)) AS errorDeliveryCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS waitingDeliveryAgainCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Chờ giao lại']}
+		)) AS waitingDeliveryAgainCount,
+	(SELECT 
+		IFNULL(COUNT(*),0) AS movingBackCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Đang chuyển hoàn']}
+		)) AS movingBackCount,		
+	(SELECT 
+		IFNULL(COUNT(*),0) AS movedBackCount 
+	FROM
+		orders 
+	WHERE ${queryParamsWhereClause} 
+		AND order_status_id IN (
+			${OrderStatusEnum['Đã chuyển hoàn']}
+		)) AS movedBackCount		
+	`
+	);
+
+	return result[0] as OrderReportStatusesDto;
+}

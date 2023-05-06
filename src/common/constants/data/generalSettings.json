@@ -1,0 +1,491 @@
+[
+	{
+		"origin_id": 1,
+		"origin_parent_id": null,
+		"obj": "Company",
+		"obj_key": null,
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 2,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Tên công ty",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 3,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Quốc gia",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 4,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Tỉnh/thành",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 5,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Quận/huyện",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 6,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Phường/xã",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{ "origin_id": 7, "origin_parent_id": 1, "obj": null, "obj_key": "Địa chỉ", "obj_value": null, "obj_type": "text" },
+	{
+		"origin_id": 8,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Số điện thoại",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 9,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Địa chỉ website",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 10,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Email công ty",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 11,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Email của bộ phận chăm sóc khách hàng",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 12,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Email của quản trị viên",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 13,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Email của bộ phận đặt hàng",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 14,
+		"origin_parent_id": 1,
+		"obj": null,
+		"obj_key": "Email thông báo đến khách hàng",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 15,
+		"origin_parent_id": null,
+		"obj": "Check out",
+		"obj_key": null,
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 16,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Tắt thanh toán ẩn danh",
+		"obj_value": null,
+		"obj_type": "checkbox"
+	},
+	{
+		"origin_id": 17,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Tiếp đầu ngữ của mã đơn hàng",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 18,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Số lượng sản phẩm tối thiểu được mua",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 19,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Số lượng sản phẩm tối đa được mua",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 20,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Bước nhảy khi tăng giảm số lượng sản phẩm",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 21,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Phương thức tính thuế dựa trên",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 22,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Giá trị tối đa của một đơn hàng",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 23,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Cho phép người bán khoá khách hàng",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 24,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Chỉ cho phép thanh toán từ giỏ hàng",
+		"obj_value": null,
+		"obj_type": "checkbox"
+	},
+	{
+		"origin_id": 25,
+		"origin_parent_id": 15,
+		"obj": null,
+		"obj_key": "Hiển thị phí vận chuyển",
+		"obj_value": null,
+		"obj_type": "checkbox"
+	},
+	{
+		"origin_id": 26,
+		"origin_parent_id": null,
+		"obj": "E-mails",
+		"obj_key": null,
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 27,
+		"origin_parent_id": 26,
+		"obj": null,
+		"obj_key": "Method of sending e-mails",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 28,
+		"origin_parent_id": 26,
+		"obj": null,
+		"obj_key": "SMTP host",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 29,
+		"origin_parent_id": 26,
+		"obj": null,
+		"obj_key": "SMTP username",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 30,
+		"origin_parent_id": 26,
+		"obj": null,
+		"obj_key": "SMTP password",
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 31,
+		"origin_parent_id": 26,
+		"obj": null,
+		"obj_key": "Use Encrypted Connection",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 32,
+		"origin_parent_id": 26,
+		"obj": null,
+		"obj_key": "Use SMTP authentication",
+		"obj_value": null,
+		"obj_type": "checkbox"
+	},
+	{
+		"origin_id": 33,
+		"origin_parent_id": null,
+		"obj": "Thumnails",
+		"obj_key": null,
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 34,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Thumnail format",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 35,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "JPEG format quality (0-100)",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 36,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product list (category, search, etc) thumbnail width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 37,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product list (category, search, etc) thumbnail height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 38,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product details page thumbnail width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 39,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product details page thumbnail height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 40,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product quick view thumbnail width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 41,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product quick view thumbnail height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 42,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product cart page thumbnail width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 43,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product cart page thumbnail height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 44,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product variant selector thumbnail width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 45,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Product variant selector thumbnail height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 46,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Categories list thumbnail width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 47,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Categories list thumbnail height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 48,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Category details page thumbnail width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 49,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Category details page thumbnail height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 50,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Detailed category image width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 51,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Detailed category image height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 52,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Admin panel: product mini-icon thumbnail width",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 53,
+		"origin_parent_id": 33,
+		"obj": null,
+		"obj_key": "Admin panel: product mini-icon thumbnail height",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 54,
+		"origin_parent_id": null,
+		"obj": "Delivery configuration",
+		"obj_key": null,
+		"obj_value": null,
+		"obj_type": "text"
+	},
+	{
+		"origin_id": 55,
+		"origin_parent_id": 54,
+		"obj": null,
+		"obj_key": "Kho hàng",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 56,
+		"origin_parent_id": 54,
+		"obj": null,
+		"obj_key": "Tiền thu hộ COD (vnđ)",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 57,
+		"origin_parent_id": 54,
+		"obj": null,
+		"obj_key": "Khối lượng (kg)",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 58,
+		"origin_parent_id": 54,
+		"obj": null,
+		"obj_key": "Chiều dài (cm)",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 59,
+		"origin_parent_id": 54,
+		"obj": null,
+		"obj_key": "Chiều rộng (cm)",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 60,
+		"origin_parent_id": 54,
+		"obj": null,
+		"obj_key": "Chiều cao (cm)",
+		"obj_value": null,
+		"obj_type": "number"
+	},
+	{
+		"origin_id": 61,
+		"origin_parent_id": 54,
+		"obj": null,
+		"obj_key": "Yêu cầu giao hàng",
+		"obj_value": null,
+		"obj_type": "select"
+	},
+	{
+		"origin_id": 62,
+		"origin_parent_id": 54,
+		"obj": null,
+		"obj_key": "Ghi chú giao hàng",
+		"obj_value": null,
+		"obj_type": "text"
+	}
+]

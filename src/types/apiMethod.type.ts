@@ -1,0 +1,1 @@
+export type ApiMethod = 'POST' | 'PUT' | 'GET' | 'DELETE'

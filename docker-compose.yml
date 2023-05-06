@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+    builder:
+        container_name: builder
+        build:
+            context: .
+            target: builder
+        ports:
+            - '5055:5055'
+        volumes:
+            - .:/src/usr/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+        env_file:
+            - ./.env
+
+    production:
+        container_name: production
+        build:
+            context: .
+            target: production
+        ports:
+            - '5000:5000'
+        volumes:
+            - .:/src/usr/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+        env_file:
+            - ./.env
+        depends_on: [builder]
