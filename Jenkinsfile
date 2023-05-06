@@ -46,6 +46,7 @@ pipeline {
         stage("Installation"){
             steps {
                 sh "node -v"
+                sh "npm install -g yarn"
                 sh "npm install --force"
             }
         }
